@@ -1,0 +1,120 @@
+{% include "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add</title>
+    <style>
+        img.resize {
+        max-width:20%;
+        max-height:20%;
+        border:5px double white;
+         border-radius:5px;
+}
+.profile {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.profile-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: darkred;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    table
+    {
+    width:100%;
+    padding-left:100px;
+    color:#324b81;
+    }
+    input
+    {
+    border-radius:5px;
+    border:1px solid gray;
+    }
+    button
+    {
+
+    }
+    </style>
+</head>
+<body>
+
+        {% csrf_token %}
+        <fieldset>
+            <legend align="center" style="color:#324b81;">Edit profile</legend>
+            <p align="center"><img class="resize" src="{{ user.profile.profile_picture.url }}"></p>
+        </fieldset>
+        <div id="myprofile" class="profile">
+        <div class="profile-content">
+            <span class="close">&times;</span>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+               <table>
+                   <tr><td><i class="fas fa-user"></i></td><td>{{ form.profile_picture }}</td></tr>
+                   <tr><td><i class="fas fa-birthday-cake"></i></td><td><input type="date" name="DOB" id="id_DOB" placeholder="dd/mm/yyyy" value="{{form.DOB.value}}"/> </td></tr>
+                   <tr><td><i class="fas fa-map-marker-alt"></i></td><td><input type="text" name="city" id="id_city" value="{{ form.city.value }}"/> </td></tr>
+                   <tr><td><i class="fas fa-phone"></i></td><td>{{ form.phone }}</td></tr>
+                   <tr><td>Gender:</td><td>{{ form.Gender }}</td></tr>
+                   <tr><td><i class="fas fa-graduation-cap"></i></td><td>{{ form.College }}</td></tr>
+                   <tr><td><i class="fas fa-school"></i></td><td>{{ form.School }}</td></tr>
+                   <tr><td><button class="btn btn-primary" type="submit" value="Update">Update</button></td></tr>
+               </table>
+
+            </form>
+        </div>
+
+</div>
+
+        <div align="center">
+            <button class="btn btn-primary" id="updateinfo">UpdateInfo</button>
+        </div>
+
+
+<script>
+var profile = document.getElementById('myprofile');
+var btn = document.getElementById("updateinfo");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    profile.style.display = "block";
+}
+span.onclick = function() {
+    profile.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        profile.style.display = "none";
+    }
+}
+</script>
+</body>
+</html>

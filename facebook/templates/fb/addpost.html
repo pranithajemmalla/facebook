@@ -1,0 +1,36 @@
+{% include "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+    <style>
+        #newpost
+        {
+        padding-top:50px;
+        text-align:center;
+        }
+        .inputsubmit
+        {
+        background-color:white;
+        border-radius:5px;
+        border: 1px solid lightgray;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 align="center" style="color:#3b5998;">Edit post</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="newpost">
+            <h4 align="center" style="color:#3b5998;">Title</h4>
+            {{form.title}}
+            <br/><br/>
+       <p align="center">{{form.image}}</p>
+        <input class="inputsubmit" style="color:#3b5998;" type="submit" value="Post"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% include "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Home</title>
+    {% load static %}
+   <link rel="stylesheet" href="{% static 'homecss.css' %}"/>
+
+</head>
+<body>
+
+<p align="center"> <a href="{% url 'addpost' user.id %}">Add post</a></p>
+    {% if posts %}
+    {% for post in posts %}
+
+        <div class="post-card" id="postid{{post.p.id}}" style="border:1px solid lightgray;">
+            {% if post.postusername.username == user.username %}
+            <div style="float:right">
+                <a href="{% url 'postupdate' post.p.id %}" style="padding-right:3px;"><span class="glyphicon glyphicon-pencil"></span> </a>
+                <a class="deletepost" id="deletepost{{post.p.id}}" data-catid="{{post.p.id}}"><span class="glyphicon glyphicon-trash"></span> </a>
+            </div>
+            {% endif %}
+        <div class="post-card-header">
+            <div> <img class="image-cropper"  src="/media/{{ post.postuserprofile.profile_picture }}"/></div>
+            <p align="left">
+            <b>{{post.postusername.username}}</b>
+            <br/>
+            {{ post.postdate.date_created|date:'M j Y,H:i' }}
+
+            </p>
+        </div>
+            <div class="post-card-body">
+             <h5 class="post-card-title" align="left">{{post.p.title}}</h5>
+                {% if post.p.image %}
+                <p><img class="resize" src="{{ post.p.image.url }}"></p>
+                {% endif %}
+                <p id="likecnt{{post.p.id}}" align="left">{{post.likecnt}} Likes</p>
+                <div class="likecmnts">
+                 {% if post.p.id in like %}
+                <button class="likebutton liked" content="liked" data-catid="{{post.p.id}}" id="liked{{post.p.id}}" ><span class="glyphicon glyphicon-thumbs-up"></span>Like</button>
+                {% else %}
+               <button class="likebutton" content="like" data-catid="{{post.p.id}}" id="like{{post.p.id}}"><span class="glyphicon glyphicon-thumbs-up"></span>Like</button>
+                {% endif %}
+                <button class="displaycmnts" data-catid="{{post.p.id}}"><span class="glyphicon glyphicon-comment"></span>Comments</button>
+                </div>
+
+                <div class="comment">
+                     <p><img src="{{ user.profile.profile_picture.url }}" class="imground"></p>
+                    <input class="cmtinput" placeholder=" Write a Comment..." data-catid="{{post.p.id}}" type="text" id="textbox{{post.p.id}}"/>
+                </div>
+                <br/><br/>
+                 <p align="left" id="pcomment{{post.p.id}}">
+                <div id="comments{{post.p.id}}" style="display:none;align:left;">
+                    {% for cmt in post.c %}
+                <p align="left">{{cmt.comment}}</p>
+                    {% endfor %}
+                </p>
+                </div>
+        </div>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% load static %}
+    <script src="{% static 'homescript.js' %}"></script>
+</body>
+</html>

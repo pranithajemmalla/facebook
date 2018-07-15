@@ -1,0 +1,104 @@
+{% include "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Requests</title>
+    <style>
+    .total
+    {
+         float:left;
+         width:50%;
+    }
+        .frdreqs
+        {
+
+        text-align:center;
+
+        border:1px solid white;
+        }
+        .frds
+        {
+
+        text-align:center;
+
+        border:1px solid white;
+        }
+        .others
+        {
+        width:50%;
+        float:right;
+        border:1px solid white;
+        text-align:center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="total">
+    <div class="frdreqs">
+    <h4 style="color:#324b81;">Friend Requests</h4>
+    {% if not frdreqs %}
+    <p > No Friend Requests...</p>
+    {% endif %}
+    {% for f in frdreqs %}
+    <p>{{f.username }}</p>
+    <button type="button" class="btn btn-outline-primary acceptfriend" data-catid="{{f.id}}" id="accept_frnd{{f.id}}">Accept</button>
+    {% endfor %}
+    </div>
+    <div class="frds">
+    <h4 style="color:#324b81;">Friends</h4>
+    {% if not frnds %}
+    <p> No Friends...</p>
+    {% endif %}
+    {% for f in frnds %}
+    <p>{{f.username }}</p>
+    {% endfor %}
+</div>
+    </div>
+<div class="others">
+    <h4 style="color:#324b81;">People You may Know</h4>
+    {% for f in users %}
+    <p>{{f.username}}</p>
+    {% csrf_token %}
+    <button type="button" class="btn btn-primary addfriend" data-catid="{{f.id}}" id="add_frnd{{f.id}}">Add Friend</button>
+    {% endfor %}
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+     $('.acceptfriend').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/acceptrequest",
+        data:{
+                 friend_id: catid
+        },
+        success: function( data )
+        {
+            $( '#accept_frnd'+ catid ).text("Accepted");
+            $('#accept_frnd'+ catid).prop('disabled', true);
+        }
+     })
+});
+$('.addfriend').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/requestfriend",
+        data:{
+                 friend_id: catid
+        },
+        success: function( data )
+        {
+            $( '#add_frnd'+ catid ).text("Requested");
+            $('#add_frnd'+ catid).prop('disabled', true);
+        }
+     })
+});
+</script>
+</body>
+</html>

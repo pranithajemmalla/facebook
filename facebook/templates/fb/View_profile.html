@@ -1,0 +1,222 @@
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <style>
+         img.resize
+         {
+        max-width:300px;
+        max-height:300px;
+         border:5px double lightgray;
+         border-radius:5px;
+        }
+
+        .imagediv
+        {
+         float:left;
+        height:300px;
+        width:300px;
+        }
+
+        .contentdiv
+        {
+        float:right;
+        color:#3b5998;
+        margin-right:100px;
+        }
+        .procontainer
+        {
+        border: 1px solid lightgray;
+        margin-left:150px;
+        background-color:white;
+        width:80%;
+        height:300px;
+        margin-bottom:10px;
+        border-radius:5px;
+        }
+        contentdiv.fas
+        {
+        color:#dfe3ee;
+        }
+        .vl {
+    border-left: 2px solid gray;
+    height: 250px;
+    position: absolute;
+    left: 50%;
+    margin-top:80px;
+    margin-left: -3px;
+    top: 0;
+}
+    </style>
+</head>
+<body>
+<div class="procontainer">
+    <div class="imagediv">
+     <p align="left"><img class="resize" src="{{ profile.profile_picture.url }}"></p>
+    </div>
+    <div class="vl"></div>
+     <div class="contentdiv">
+          <h3><i class="fas fa-user"></i> {{suser.first_name}} {{suser.last_name}}</h3>
+         {% if  profile.Gender  %}
+         <h3>Gender:
+         {% if profile.Gender == "male" %}
+         <i class="fas fa-male"></i>
+         {% else %}
+         <i class="fas fa-female"></i>
+         {% endif %}
+         {% endif %}
+         </h3>
+         {% if profile.DOB %}
+           <h3><i class="fas fa-birthday-cake"></i> {{profile.DOB|date:'M j Y'}}</h3>
+         {% endif %}
+
+          {% if profile.phone %}
+            <h3><i class="fas fa-phone"></i> {{profile.phone}}</h3>
+         {% endif %}
+
+         {% if suser.email %}
+           <h3><i class="fas fa-at"></i> {{suser.email}}</h3>
+         {% endif %}
+
+         {% if profile.school %}
+           <h3><i class="fas fa-school"></i> {{profile.school}}</h3>
+         {% endif %}
+
+        {% if profile.college %}
+           <h3><i class="fas fa-graduation-cap"></i> {{profile.college}}</h3>
+         {% endif %}
+
+         {% if profile.city %}
+          <h3><i class="fas fa-map-marker-alt"></i> {{profile.city}}</h3>
+         {% endif %}
+
+     </div>
+</div>
+{% if posts %}
+    {% for post in posts %}
+
+        <div class="post-card">
+             {% if post.postusername.username == user.username %}
+            <div style="float:right">
+                <a href="{% url 'postupdate' post.p.id %}" style="padding-right:3px;"><span class="glyphicon glyphicon-pencil"></span> </a>
+                <a href=""><span class="glyphicon glyphicon-trash"></span> </a>
+        </div>
+            {% endif %}
+        <div class="post-card-header">
+            <div> <img class="image-cropper"  src="/media/{{ post.postuserprofile.profile_picture }}"/></div>
+            <p align="left">
+            <b>{{post.postusername.username}}</b>
+            <br/>
+            {{ post.postdate.date_created|date:'M j Y,H:i' }}
+
+            </p>
+        </div>
+            <div class="post-card-body">
+             <h5 class="post-card-title" align="left">{{post.p.title}}</h5>
+                {% if post.p.image %}
+                <p><img class="resize" src="{{ post.p.image.url }}"></p>
+                {% endif %}
+                <p id="likecnt{{post.p.id}}" align="left">{{post.likecnt}} Likes</p>
+                <div class="likecmnts">
+                 {% if post.p.id in like %}
+                <button class="likebutton liked" content="liked" data-catid="{{post.p.id}}" id="liked{{post.p.id}}" ><span class="glyphicon glyphicon-thumbs-up"></span>Like</button>
+                {% else %}
+               <button class="likebutton" content="like" data-catid="{{post.p.id}}" id="like{{post.p.id}}"><span class="glyphicon glyphicon-thumbs-up"></span>Like</button>
+                {% endif %}
+                <button class="displaycmnts" data-catid="{{post.p.id}}"><span class="glyphicon glyphicon-comment"></span>Comments</button>
+                </div>
+
+                <div class="comment">
+                     <p><img src="{{ user.profile.profile_picture.url }}" class="imground"></p>
+                    <input class="cmtinput" placeholder=" Write a Comment..." data-catid="{{post.p.id}}" type="text" id="textbox{{post.p.id}}"/>
+                </div>
+                 <br/><br/>
+                 <p align="left" id="pcomment{{post.p.id}}">
+                <div id="comments{{post.p.id}}" style="display:none">
+                    {% for cmt in post.c %}
+                <p align="left">{{cmt.comment}}</p>
+                    {% endfor %}
+                </p>
+                </div>
+
+        </div>
+        </div>
+
+    {% endfor %}
+    {% endif %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.cmtinput').keypress(function(ev){
+
+    if(ev.key==="Enter")
+    {
+
+    catid = $(this).attr("data-catid");
+    var txtbox=$('#textbox'+catid).val();
+    document.getElementById('textbox'+catid).value = "";
+    $('#pcomment'+catid).append("<p>"+txtbox+"</p>");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/addcomment",
+        data:{
+                 post_id: catid,
+                 comment: txtbox,
+        },
+        success: function( data )
+        {
+
+        }
+     })
+     }
+    });
+     $('.addfriend').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/requestfriend",
+        data:{
+                 friend_id: catid
+        },
+        success: function( data )
+        {
+            $( '#add_frnd'+ catid ).text("Requested");
+            $('#add_frnd'+ catid).prop('disabled', true);
+        }
+     })
+});
+    $('.likebutton').click(function(){
+    var catid,data1="aa";
+    $(this).toggleClass('liked');
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+                 post_id: catid,
+
+        },
+        success: function( data )
+        {
+
+          document.getElementById('likecnt'+catid).innerHTML = data+" Likes";
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert('error');
+      }
+     })
+    });
+
+
+   $('.displaycmnts').click(function(){
+    catid = $(this).attr("data-catid");
+    $('#comments'+catid).toggle();
+    });
+
+</script>
+</body>
+</html>

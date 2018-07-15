@@ -1,0 +1,72 @@
+.post-card
+        {
+
+         display: table;
+          margin-right: auto;
+         margin-left: auto;
+        padding:10px;
+         margin-bottom:10px;
+        text-align:center;
+        width: 600px;
+        background-color:white;
+        border-radius:5px
+
+        }
+        .cmtinput
+        {
+        padding-left:2px;
+        margin:0;
+        float:left;
+        height:30px;
+        width:90%;
+        border-radius:10px;
+        border: 1px solid gray;
+        }
+        .comment
+        {
+       width:100%;
+        }
+        .likecmnts
+        {
+
+        width:100%;
+        }
+        .imground
+        {
+        border-radius: 50%;
+        height:30px;
+        margin-right:2px;
+        float:left;
+        }
+        .likebutton,.displaycmnts
+        {
+        width:45%;
+        background:none;
+        border:none;
+        color:gray;
+          height:40px;
+        }
+        .liked
+        {
+        color:#324b81;
+        }
+        img.resize
+        {
+         max-width: 500px;
+        max-height: 500px;
+        border:5px double lightgray;
+        }
+        .image-cropper {
+        float:left;
+        max-width: 40px;
+        max-height: 40px;
+        position: relative;
+        overflow: hidden;
+         border-radius: 50%;
+         margin-right:5px;
+         object-fit: cover;
+    }
+    .srchbckd
+    {
+
+    }

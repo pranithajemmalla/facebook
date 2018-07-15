@@ -1,0 +1,200 @@
+ .dropbtn {
+    background-color: #3B5998;
+    width:20px;
+    height:20px;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn:hover, .dropbtn:focus {
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float:right;
+    padding-right:150px;
+    background-color:Transparent;
+}
+.dropdown:hover
+{
+background-color:Transparent;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    focus {outline:0;}
+}
+button:focus {outline:0;}
+input:focus {outline:0;}
+    .show {display: block;}
+        #navbar
+        {
+        float:right;
+        display:inline;
+        }
+        #basenav,.nav-navbar
+        {
+        padding:10px;
+        background-color:#3B5998;
+        height:45px;
+        align-items: center
+
+        }
+        #fbicon
+        {
+        padding-left:40px;
+        }
+        #txtbox
+        {
+        width:350px;
+        height:25px;
+        }
+        #srchbtn
+        {
+        background-color:Transparent;
+        height:23px;
+        width:23px;
+        border:none;
+         padding: 0;
+        margin: 0;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+         cursor: pointer;
+         color:white;
+        }
+        .headerimg
+        {
+        border-radius: 45%;
+        width:25px;
+        height:30px;
+        padding-bottom:3px;
+        }
+        body
+        {
+        background-color:#dfe3ee;
+        }
+        .fa-user-friends
+        {
+        font-size:23px;
+        }
+        .fab
+        {
+        font-size:25px;
+        }
+
+        #headerpro,#headerhome
+        {
+        color:white;
+        text-decoration:none;
+
+        }
+        #headerpro:hover,#headerhome:hover
+        {
+        background-color:#324b81;
+
+        }
+        #headerpro,#headerreq,#headerhome,#headermsg
+        {
+        width:25%;
+        }
+        .outersearch
+        {
+        position:relative;
+        }
+        .searchresults
+        {
+       margin-left:77px;
+        width:350px;
+        background-color:white;
+        position: absolute; // Reposition logo from the natural layout
+        left: 75px;
+        top: 0px;
+        z-index: 2;
+        }
+       body {
+    font-size:15px;
+    font-family:Book Antiqua;
+    }
+     .post-card
+        {
+         display: table;
+          margin-right: auto;
+         margin-left: auto;
+        padding:10px;
+         margin-bottom:10px;
+        text-align:center;
+        width: 600px;
+        background-color:white;
+        border-radius:5px
+        }
+        .cmtinput
+        {
+        padding-left:2px;
+        margin:0;
+        float:left;
+        height:30px;
+        width:90%;
+        border-radius:10px;
+        border: 1px solid gray;
+        }
+        .comment
+        {
+       width:100%;
+        }
+        .likecmnts
+        {
+
+        width:100%;
+        }
+        .imground
+        {
+        border-radius: 50%;
+        height:30px;
+        margin-right:2px;
+        float:left;
+        }
+        .likebutton,.displaycmnts
+        {
+        width:45%;
+        background:none;
+        border:none;
+        color:gray;
+          height:40px;
+        }
+        .liked
+        {
+        color:#324b81;
+        }
+        img.resize
+        {
+         max-width: 500px;
+        max-height: 500px;
+
+        }
+        .image-cropper {
+        float:left;
+        max-width: 40px;
+        max-height: 40px;
+        position: relative;
+        overflow: hidden;
+         border-radius: 50%;
+         margin-right:5px;
+         object-fit: cover;
+    }
+    .image-cropper
+    {
+
+    }

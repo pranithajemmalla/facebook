@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <title>Facebook</title>
+    {% load static %}
+   <link rel="stylesheet" href="{% static 'basecss.css' %}"/>
+
+</head>
+<body>
+<nav id="basenav" class="nav-navbar">
+    {% load static %}
+
+  <a id="fbicon" href="{% url 'home' %}"><b style="color:white;padding-top:1px;"><img width="25px" height="25px" src="{% static 'fb.jpg' %}" alt="f"/> </b></a>
+  <input id="txtbox" oninput="search()" type="text" placeholder="Search">
+  <button class="textboxclass" id="srchbtn" type="submit"><i class="fas fa-search"></i></button>
+    <div class="dropdown">
+<button onclick="myFunction()" class="dropbtn"><span class="glyphicon glyphicon-triangle-bottom dropbtn"></span></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+    <div id="navbar">
+        <div class="home">
+            <a id="headerpro" href="{% url 'updateprofile' user.profile.id %}">  <img class="headerimg" src="{{ user.profile.profile_picture.url }}"/><span  style="margin:3px;padding:3px;margin-right:25px;"> {{ user.username }}</span></a>|
+  <a id="headerhome" href="{% url 'home' %}"><span style="margin:3px; margin-left:25px;padding:3px;margin-right:25px;"> Home </span></a>
+  <a id="headerreq" href="{% url 'requests' %}"><i class="fas fa-user-friends"></i> </a>|
+  <a id="headermsg" href="{% url 'viewmessages' %}"><i class="fab fa-facebook-messenger"></i></a>
+        </div>
+    </div>
+</nav>
+<div class="outersearch">
+<div class="searchresults" id="mysearch"></div>
+</div>
+<div class="container">
+    <p id="searchresults"></p>
+</div>
+ {% load static %}
+    <script src="{% static 'basescript.js' %}"></script>
+</body>
+</html>

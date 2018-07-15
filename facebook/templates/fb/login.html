@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+ <style>
+    #header
+    {
+    background-color:#3B5998;
+    height:70px;
+    padding:0px;
+    }
+    #loginheader
+    {
+    float:right;
+    padding-top:26px;
+    padding-right:40px;
+    }
+    body
+    {
+    margin:0;
+    }
+    #fb
+    {
+    color:white;
+    font-size:50px;
+    padding:40px;
+    align:center;
+    padding-left:290px;
+    text-decoration:none;
+    }
+    #logincontent
+    {
+    text-align:center;
+    font-size:25px;
+    color:#000080;
+    }
+    .btn
+    {
+    background-color:#5b7dc3;
+    color:white;
+     border: 1px solid gray;
+      text-align: center;
+       -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+    .btn:hover
+    {
+    background-color:#3B5998;
+    }
+    </style>
+</head>
+<body>
+    <nav id="header">
+        <a href="#" id="fb"><b>facebook</b></a>
+        <div id="loginheader">
+
+            <form method="post">
+                {% csrf_token %}
+                <span style="color:white">Username</span>
+                <input id="id_username" name="username" type="text" value="" required />
+                <span style="color:white">Password</span>
+                <input id="id_password" name="password" type="password" value="" required />
+                <input class="btn" type="submit" value="Login">
+            </form>
+    </div>
+    </nav>
+    <h4 align="right" style="padding-right:5px;"><a href="{% url 'register' %}">Don't have an account</a></h4>
+<div id="logincontent">
+    <p><b>Facebook helps you connect and share with the people in your life.</b></p>
+</div>
+
+</body>
+</html>

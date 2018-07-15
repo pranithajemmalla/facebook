@@ -1,0 +1,174 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        table
+        {
+        width:100%;
+         text-align:left;
+         padding-left:250px;
+         padding-top:5px;
+         padding-down:20px;
+        }
+        tr
+        {
+        height:40px;
+        }
+        td
+        {
+        text-align:left;
+
+        }
+        .inputclass
+        {
+        padding-left:3px;
+        width:80%;
+        height:35px;
+        border-radius:5px;
+       border:1px solid lightblue;
+        }
+        input:focus {outline:0;}
+        form
+        {
+        text-align:center;
+        }
+        container
+        {
+        align:center;
+        }
+          body
+        {
+        background-color:#dfe3ee;
+        }
+    </style>
+     <style>
+     .btn
+    {
+    background-color:#5b7dc3;
+    color:white;
+     border: 1px solid gray;
+      text-align: center;
+       -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+    .btn:hover
+    {
+    background-color:#3B5998;
+    }
+    #header
+    {
+    background-color:#3B5998;
+    height:70px;
+    padding:0px;
+    }
+    #loginheader
+    {
+    float:right;
+    padding-top:26px;
+    padding-right:40px;
+    }
+    body
+    {
+    margin:0;
+    }
+    #fb
+    {
+    color:white;
+    font-size:50px;
+    padding:40px;
+    align:center;
+    padding-left:290px;
+    text-decoration:none;
+    }
+    #logincontent
+    {
+    text-align:center;
+    font-size:25px;
+    color:#000080;
+    }
+    .signupbtn
+    {
+    margin-left:100px;
+    background-color:#189a18;
+    border-radius:20px;
+    height:30px;
+    width:100px;
+    color:white;
+     border: 1px solid;
+      text-align: center;
+       -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+    .signupbtn:hover
+    {
+    background-color:#4fe34f;
+    }
+    txtbox
+    {
+    width:300px;
+    }
+    #gotologin
+    {
+    padding-top:28px;
+    padding-right:20px;
+    float:right;
+    color:white;
+    }
+    </style>
+</head>
+<body>
+<nav id="header">
+        <a href="#" id="fb"><b>facebook</b></a>
+    <div id="gotologin">
+            <a href="{% url 'login' %}"><span style="color:white"> Already have an account</span></a>
+        </div>
+    </div>
+    </nav>
+<div class="container">
+    <h1 align="center">Create a new account</h1>
+    <p align="center">It's free and always will be.</p>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+
+                <tr>
+                    <td>
+                    <input class="inputclass" id="id_username" name="username" type="text" value="" required placeholder="UserName"/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <input class="inputclass" id="id_first_name" name="first_name" type="text" value="" required placeholder="First Name"/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <input class="inputclass" id="id_last_name" name="last_name" type="text" value="" required placeholder="Last Name"/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <input class="inputclass" id="id_email" name="email" type="email" value="" required placeholder="Email"/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <input class="inputclass" id="id_password1" name="password1" type="password" value="" required placeholder="Enter Password"/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <input class="inputclass" id="id_password2" name="password2" type="password" value="" required placeholder="Re-enter Password"/>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <input align="left" class="signupbtn" type="submit" value="Sign Up"/>
+        </form>
+</div>
+</body>
+</html>
