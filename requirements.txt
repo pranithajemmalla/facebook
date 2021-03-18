@@ -42,7 +42,7 @@ openpyxl==2.5.3
 parso==0.2.1
 pathspec==0.3.3
 pickleshare==0.7.4
-Pillow==5.1.0
+Pillow==8.1.1
 prompt-toolkit==1.0.15
 psutil==5.4.6
 psycopg2==2.7.5
