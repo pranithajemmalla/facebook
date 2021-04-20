@@ -46,7 +46,7 @@ Pillow==5.1.0
 prompt-toolkit==1.0.15
 psutil==5.4.6
 psycopg2==2.7.5
-py==1.5.2
+py==1.10.0
 pycparser==2.18
 Pygments==2.2.0
 PyJWT==1.6.4
